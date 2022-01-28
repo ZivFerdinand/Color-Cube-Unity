@@ -18,7 +18,10 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         draggingStarted = false;
         direction = Direction.None;
     }
-
+    private void Update()
+    {
+        //Debugger();
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         draggingStarted = true;
@@ -65,5 +68,9 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         endPos = Vector2.zero;
         draggingStarted = false;
     }
-
+    
+    public void Debugger()
+    {
+        Debug.Log(direction);
+    }
 }

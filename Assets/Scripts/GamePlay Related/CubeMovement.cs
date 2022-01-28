@@ -1,11 +1,10 @@
-
 using System.Collections;
 using UnityEngine;
 
-public class cubeMovement : MonoBehaviour
+public class CubeMovement : MonoBehaviour
 {
     public float rollDuration = 1f;
-    private bool isRolling;
+    public static bool isRolling;
     public Transform pivot;
     public Transform ghostPlayer;
     public LayerMask contactWallLayer;
