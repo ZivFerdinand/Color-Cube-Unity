@@ -1,34 +1,134 @@
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class cubeMovement : MonoBehaviour
 {
-    [SerializeField] private float _rollSpeed = 5;
-    private bool _isMoving;
- 
-    private void Update() {
-        if (_isMoving) return;
-        if(Mathf.Abs(transform.position.y - 1.420776f) > 0.01f) return;
+    public float rollDuration = 1f;
+    private bool isRolling;
+    public Transform pivot;
+    public Transform ghostPlayer;
+    public LayerMask contactWallLayer;
 
-        if      (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))    Assemble(Vector3.left);
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))   Assemble(Vector3.right);
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))      Assemble(Vector3.forward);
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))    Assemble(Vector3.back);
+    public InputManager inputManager;
 
-        void Assemble(Vector3 dir) {
-            var anchor = transform.position + (Vector3.down + dir) * 0.5f;
-            var axis = Vector3.Cross(Vector3.up, dir);
-            StartCoroutine(Roll(anchor, axis));
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    void Initialize()
+    {
+        inputManager.onSwipeDetected += Roll;
+        isRolling = false;
+    }
+
+    private void Roll(InputManager.Direction direction)
+    {
+        StartCoroutine(RollToDirection(direction));
+    }
+
+    private IEnumerator RollToDirection(InputManager.Direction swipeDirection)
+    {
+        if (!isRolling)
+        {
+            isRolling = true;
+
+            float angle = 90f;
+            Vector3 axis = GetAxis(swipeDirection);
+            Vector3 directionVector = GetDirectionVector(swipeDirection);
+            Vector2 pivotOffset = GetPivotOffset(swipeDirection);
+
+            pivot.position = transform.position + (directionVector * pivotOffset.x) + (Vector3.down * pivotOffset.y);
+
+            //simulate before the action in order to get an ideal result
+            CopyTransformData(transform, ghostPlayer);
+            ghostPlayer.RotateAround(pivot.position, axis, angle);
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < rollDuration)
+            {
+                elapsedTime += Time.deltaTime;
+
+                transform.RotateAround(pivot.position, axis, (angle * (Time.deltaTime / rollDuration)));
+                yield return null;
+            }
+
+            CopyTransformData(ghostPlayer, transform);
+
+            isRolling = false;
+        }
+        
+    }
+
+    public void CopyTransformData(Transform source, Transform target)
+    {
+        target.localPosition = source.localPosition;
+        target.localEulerAngles = source.localEulerAngles;
+    }
+
+    private Vector3 GetAxis(InputManager.Direction direction)
+    {
+        switch (direction)
+        {
+            case InputManager.Direction.Left:
+                return Vector3.forward;
+            case InputManager.Direction.Up:
+                return Vector3.right;
+            case InputManager.Direction.Right:
+                return Vector3.back;
+            case InputManager.Direction.Down:
+                return Vector3.left;
+            default:
+                return Vector3.zero;
         }
     }
- 
-    private IEnumerator Roll(Vector3 anchor, Vector3 axis) {
-        _isMoving = true;
-        for (var i = 0; i < 90 / _rollSpeed; i++) {
-            transform.RotateAround(anchor, axis, _rollSpeed);
-            yield return new WaitForSeconds(0.01f);
+
+    private Vector3 GetDirectionVector(InputManager.Direction direction)
+    {
+        switch (direction)
+        {
+            case InputManager.Direction.Left:
+                return Vector3.left;
+            case InputManager.Direction.Up:
+                return Vector3.forward;
+            case InputManager.Direction.Right:
+                return Vector3.right;
+            case InputManager.Direction.Down:
+                return Vector3.back;
+            default:
+                return Vector3.zero;
         }
-        _isMoving = false;
+    }
+
+    private Vector2 GetPivotOffset(InputManager.Direction direction)
+    {
+        Vector2 pivotOffset = Vector2.zero;
+        Vector2 center = transform.GetComponent<BoxCollider>().size / 2f;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.up, out hit, 100f, contactWallLayer))
+        {
+            switch (hit.collider.name)
+            {
+                case "X":
+                    if (direction == InputManager.Direction.Left || direction == InputManager.Direction.Right)
+                        pivotOffset = new Vector2(center.y, center.x);
+                    else
+                        pivotOffset = Vector2.one * center.x;
+                    break;
+                case "Y":
+                    pivotOffset = center;
+                    break;
+                case "Z":
+                    if (direction == InputManager.Direction.Up || direction == InputManager.Direction.Down)
+                        pivotOffset = new Vector2(center.y, center.x);
+                    else
+                        pivotOffset = Vector2.one * center.x;
+                    break;
+            }
+        }
+        return pivotOffset;
     }
 }
