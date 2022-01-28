@@ -9,7 +9,7 @@ public class cubeMovement : MonoBehaviour
  
     private void Update() {
         if (_isMoving) return;
-        if(Mathf.Abs(transform.position.y - 1.420776f) > 0.01f) return;
+        if(Mathf.Abs(transform.position.y - 0.2200009f) > 0.01f) return;
 
         if      (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))    Assemble(Vector3.left);
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))   Assemble(Vector3.right);
