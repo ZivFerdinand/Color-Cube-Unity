@@ -199,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 114113002}
   - component: {fileID: 114113003}
+  - component: {fileID: 114113004}
   m_Layer: 0
   m_Name: Side1
   m_TagString: Untagged
@@ -231,8 +232,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &114113004
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114113001}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1001 &141237329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,8 +458,8 @@ GameObject:
   m_Component:
   - component: {fileID: 309217938}
   - component: {fileID: 309217940}
-  - component: {fileID: 309217939}
   - component: {fileID: 309217941}
+  - component: {fileID: 309217939}
   m_Layer: 0
   m_Name: SideCheckerWall
   m_TagString: Untagged
@@ -458,7 +475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309217937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1819267, y: -4, z: 2.388827}
+  m_LocalPosition: {x: -6.1819267, y: -4.2, z: 2.388827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2100885260}
@@ -476,7 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a78407fb46d15c408e1320620c7cbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeTransform: {fileID: 1973204017}
 --- !u!65 &309217940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -504,7 +520,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 1
 --- !u!1 &321697326
 GameObject:
@@ -516,6 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321697327}
   - component: {fileID: 321697328}
+  - component: {fileID: 321697329}
   m_Layer: 0
   m_Name: Side3
   m_TagString: Untagged
@@ -548,8 +565,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &321697329
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321697326}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &483381469
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483381470}
   - component: {fileID: 483381471}
+  - component: {fileID: 483381472}
   m_Layer: 0
   m_Name: Side2
   m_TagString: Untagged
@@ -592,8 +626,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &483381472
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483381469}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &521858330
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 521858331}
   - component: {fileID: 521858332}
+  - component: {fileID: 521858333}
   m_Layer: 0
   m_Name: Side5
   m_TagString: Untagged
@@ -636,8 +687,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &521858333
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521858330}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &556798388
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 620556760}
   - component: {fileID: 620556761}
+  - component: {fileID: 620556762}
   m_Layer: 0
   m_Name: Side4
   m_TagString: Untagged
@@ -780,8 +848,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &620556762
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620556759}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1920497613}
   - component: {fileID: 1920497614}
+  - component: {fileID: 1920497615}
   m_Layer: 0
   m_Name: Side6
   m_TagString: Untagged
@@ -1582,8 +1667,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1920497615
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920497612}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1924376681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1834,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973204016}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.6, y: 1.6, z: 1.6}
