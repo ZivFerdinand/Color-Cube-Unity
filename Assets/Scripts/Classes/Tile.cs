@@ -11,5 +11,5 @@ public enum TileData
 
 public class Tile
 {
-    public TileData fill;
+    public static TileData[][] fill;
 }
