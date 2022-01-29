@@ -26,6 +26,10 @@ public class TouchingCubeArea : MonoBehaviour
     }
 
     
+    void Update()
+    {
+        Debug.Log(touchingSide + " (" + colliderName + ")");
+    }
     private void OnTriggerEnter(Collider collision)
     {
         colliderName = collision.gameObject.name;
@@ -62,9 +66,5 @@ public class TouchingCubeArea : MonoBehaviour
                 break;
             }
         }
-    }
-    void Update()
-    {
-        Debug.Log(touchingSide + " (" + colliderName + ")");
     }
 }
