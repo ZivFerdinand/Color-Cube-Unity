@@ -510,8 +510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4d6328e4817ab4886a98337f2dab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraStatus: {fileID: 0}
-  cam: {fileID: 0}
   rotateSpeed: 0
 --- !u!114 &307321397
 MonoBehaviour:
@@ -1747,9 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4d6328e4817ab4886a98337f2dab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraStatus: {fileID: 307321397}
-  cam: {fileID: 963194227}
-  rotateSpeed: 100
+  rotateSpeed: 250
 --- !u!4 &1489081397
 Transform:
   m_ObjectHideFlags: 0
