@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-using Database;
+//using Database;
 
 public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggingStarted && direction != Direction.None && !Database.GameSettings.allowCameraMovement)
+        if (draggingStarted && direction != Direction.None)
         {
             //A swipe is detected
             if (onSwipeDetected != null)
