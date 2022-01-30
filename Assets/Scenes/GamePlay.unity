@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c97ec5cd06c7143855c18faedd1da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollDuration: 0.1
+  rollDuration: 0.2
   pivot: {fileID: 863135080}
   ghostPlayer: {fileID: 2123828129}
   contactWallLayer:

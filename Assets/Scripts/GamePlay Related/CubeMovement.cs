@@ -44,22 +44,40 @@ public class CubeMovement : MonoBehaviour
             CopyTransformData(transform, ghostPlayer);
             ghostPlayer.RotateAround(pivot.position, axis, angle);
 
-            float elapsedTime = 0f;
+            
+            GameObject rotateParent = new GameObject("RotateParent");
+            rotateParent.transform.position = pivot.transform.position;
+            transform.SetParent(rotateParent.transform);
 
-            while (elapsedTime < rollDuration)
+            // float elapsedTime = 0f;
+            // while (elapsedTime < rollDuration)
+            // {
+            //     elapsedTime += Time.deltaTime;
+
+            //     transform.RotateAround(pivot.position, axis, (angle * (Time.deltaTime / rollDuration)));
+            //     transform.RotateAround(pivot.position, axis, ));
+            //     yield return null;
+            // }
+            
+            
+            rotateParent.LeanRotate(axis * 90, rollDuration).setEaseOutBounce().setOnComplete(() =>
             {
-                elapsedTime += Time.deltaTime;
+                transform.SetParent(null);
+                Destroy(rotateParent);
+                CopyTransformData(ghostPlayer, transform);
+                isRolling = false;
+            });
 
-                transform.RotateAround(pivot.position, axis, (angle * (Time.deltaTime / rollDuration)));
-                yield return null;
-            }
+            yield return null;
 
-            CopyTransformData(ghostPlayer, transform);
+            // CopyTransformData(ghostPlayer, transform);
 
-            isRolling = false;
+            // isRolling = false;
         }
-        
+
     }
+
+
 
     public void CopyTransformData(Transform source, Transform target)
     {
