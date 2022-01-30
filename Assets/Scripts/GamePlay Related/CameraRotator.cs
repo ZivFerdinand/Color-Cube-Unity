@@ -11,7 +11,8 @@ public class CameraRotator : MonoBehaviour
     public float rotateSpeed;
     void Start()
     {
-
+        targetRotation = (Database.Cameras.isInverted) ? 180 : 0;
+        transform.eulerAngles = new Vector3(0, targetRotation, 0);
     }
     void FixedUpdate()
     {
@@ -23,6 +24,7 @@ public class CameraRotator : MonoBehaviour
 
     public void onCameraButtonClick()
     {
+        Database.Cameras.isInverted = !Database.Cameras.isInverted;
         targetRotation = (targetRotation == 0) ? 180 : 0;
     }
 }

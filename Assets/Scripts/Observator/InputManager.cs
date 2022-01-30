@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-//using Database;
+using Database;
 
 public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -37,16 +37,22 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             endPos = eventData.position;
 
             Vector2 difference = endPos - startPos; // difference vector between start and end positions.
+            float X1 = startPos.x, Y1 = startPos.y;
+            float X2 = endPos.x, Y2 = endPos.y;
 
             if (difference.magnitude > swipeThreshold)
             {
-                if (Mathf.Abs(difference.x) > Mathf.Abs(difference.y)) // Do horizontal swipe
+                float dir = 1;
+                if(Database.Cameras.isInverted)
+                    dir = -1;
+                
+                if(dir * (X2 - X1)>=0)
                 {
-                    direction = difference.x > 0 ? Direction.Right : Direction.Left; // If greater than zero, then swipe to right.
+                    direction = (dir * (Y2 - Y1) >= 0) ? Direction.Right : Direction.Down;
                 }
-                else //Do vertical swipe
+                else
                 {
-                    direction = difference.y > 0 ? Direction.Up : Direction.Down; // If greater than zero, then swipe to up.
+                    direction = (dir * (Y2 - Y1) >= 0) ? Direction.Up : Direction.Left;
                 }
             }
             else
