@@ -10,7 +10,6 @@ enum SideNames
     Up,
     Left,
     Front,  
-    
     Right,
     Back
 };
