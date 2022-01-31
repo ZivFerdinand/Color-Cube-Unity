@@ -4,9 +4,17 @@ using UnityEngine;
 
 public enum TileData
 {
-    Empty,
+    None,
     Color,
     Obstacle,
+};
+
+public enum TileColor
+{
+    None,
+    Red,
+    Blue,
+    Green,
 };
 
 public class Tile
