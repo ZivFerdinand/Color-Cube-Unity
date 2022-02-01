@@ -12,9 +12,13 @@ public enum TileData
 public enum TileColor
 {
     None,
-    Red,
     Blue,
     Green,
+    Orange,
+    Red,
+    White,
+    Yellow,
+
 };
 
 public class Tile

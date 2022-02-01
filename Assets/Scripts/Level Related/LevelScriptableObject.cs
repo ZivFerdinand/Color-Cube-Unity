@@ -12,6 +12,8 @@ public class LevelScriptableObject : ScriptableObject
     public TileData[] tileData;
     [SerializeField]
     public TileColor[] tileColor;
+    [SerializeField]
+    public TileColor[] cubeSidesColor = new TileColor[6];
 
     public void OnValidate()
     {
@@ -22,6 +24,10 @@ public class LevelScriptableObject : ScriptableObject
         if(tileColor.Length != Mathf.Pow(gridSize, 2))
         {
             tileColor = new TileColor[(int) Mathf.Pow(gridSize, 2)];
+        }
+        if(cubeSidesColor.Length != 6)
+        {
+            cubeSidesColor = new TileColor[6];
         }
     }
     public void OnEnable()
