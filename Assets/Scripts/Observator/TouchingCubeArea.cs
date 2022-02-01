@@ -27,7 +27,7 @@ public class TouchingCubeArea : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(touchingSide + " (" + colliderName + ")");
+        //Debug.Log(touchingSide + " (" + colliderName + ")");
     }
     private void OnTriggerEnter(Collider collision)
     {
