@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CheckChildCollide : MonoBehaviour
 {
-    string collidedTileIndex;
+
+    public static int collidedTileIndex;
 
     void Update()
     {
@@ -17,6 +18,6 @@ public class CheckChildCollide : MonoBehaviour
         bool isNumeric = int.TryParse(collision.name, out n);
 
         if(isNumeric)
-            collidedTileIndex = collision.name;
+            collidedTileIndex = int.Parse(collision.name);
     }
 }
