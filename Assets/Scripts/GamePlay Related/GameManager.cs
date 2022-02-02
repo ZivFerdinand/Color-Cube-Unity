@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
+        Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
 
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
         cubeTileChildren = cubeTile.GetComponentsInChildren<MeshRenderer>();
@@ -77,23 +77,15 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-
-    /// <summary>
-    /// Load Scriptable Objects' Data From Folder
-    /// </summary>
-    /// <typeparam name="GameData"></typeparam>
-    /// <param name="dataSize">Current Data Amount</param>
-    /// <param name="listTabData">The List that Will Be Updated Later</param>
-    /// <param name="dataPath">Folder Path</param>
-    public void LoadGameData<GameData>(ref int dataSize, List<GameData> listTabData, string dataPath) where GameData : ScriptableObject
+    public void  Update()
     {
-        GameData[] list = Resources.LoadAll<GameData>(dataPath);
-        dataSize = list.Length;
+        int touchedPlane = CheckChildCollide.collidedTileIndex;
+        int touchedCubeSide = TouchingCubeArea.touchingSideIndex;
 
-        foreach (GameData gd in list)
-        {
-            listTabData.Add(gd);
-        }
+        Debug.Log("TileColor: "+levelData[0].tileColor[touchedPlane] + touchedPlane.ToString());
+        Debug.Log("CubeSidesColor: "+levelData[0].cubeSidesColor[touchedCubeSide] + touchedCubeSide.ToString());
     }
+
+
+    
 }

@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 //3
 enum SideNames
 {
-    Null,
     Down,
     Up,
     Left,
@@ -17,6 +16,7 @@ enum SideNames
 public class TouchingCubeArea : MonoBehaviour
 {
     SideNames touchingSide;
+    public static int touchingSideIndex;
 
     private string colliderName;
     void Awake()
@@ -34,36 +34,38 @@ public class TouchingCubeArea : MonoBehaviour
         colliderName = collision.gameObject.name;
         switch(collision.gameObject.name)
         {
-            case "Side1":
+            case "Side0":
             {
                 touchingSide = SideNames.Down;
                 break;
             }
-            case "Side2":
+            case "Side1":
             {
                 touchingSide = SideNames.Up;
                 break;
             }
-            case "Side3":
+            case "Side2":
             {
                 touchingSide = SideNames.Left;
                 break;
             }
-            case "Side4":
+            case "Side3":
             {
                 touchingSide = SideNames.Front;
                 break;
             }
-            case "Side5":
+            case "Side4":
             {
                 touchingSide = SideNames.Right;
                 break;
             }
-            case "Side6":
+            case "Side5":
             {
                 touchingSide = SideNames.Back;
                 break;
             }
         }
+
+        touchingSideIndex = (int)touchingSide;
     }
 }
