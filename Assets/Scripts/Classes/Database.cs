@@ -19,6 +19,17 @@ namespace Database
                 return (temp == 1) ? true : false;
             }
         }
+        public static float lastFOVValue
+        {
+            set
+            {
+                PlayerPrefs.SetFloat("camFOV", value);
+            }
+            get
+            {
+                return PlayerPrefs.GetFloat("camFOV", 0);
+            }
+        }
     }
 
     public class Functions
