@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
 
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
         cubeTileChildren = cubeTile.GetComponentsInChildren<MeshRenderer>();
-
-        for (int i = 1; i < cubeSideChildren.Length;i++)
+        
+        for (int i = 0; i < cubeSideChildren.Length;i++)
         {
             Color x = new Color();
-            switch (levelData[0].cubeSidesColor[i - 1])
+            switch (levelData[0].cubeSidesColor[i])
             {
                 case TileColor.Blue:
                     x = Color.blue;
@@ -84,7 +84,10 @@ public class GameManager : MonoBehaviour
                 cubeTileChildren[i].material.SetColor("_Color", x);
             }
             else
+            {
                 levelColorChecker[i - 1] = true;
+                cubeTileChildren[i].material.SetColor("_Color", Color.clear);
+            }
         }
     }
 
