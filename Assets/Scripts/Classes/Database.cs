@@ -32,6 +32,21 @@ namespace Database
         }
     }
 
+    public class LevelRelated
+    {
+        public static int selectedLevelFromScene
+        {
+            set
+            {
+                PlayerPrefs.SetInt("sceneLevel", value);
+            }
+            get
+            {
+                return PlayerPrefs.GetInt("sceneLevel", 0);
+            }
+        }
+    }
+
     public class Functions
     {
         /// <summary>
