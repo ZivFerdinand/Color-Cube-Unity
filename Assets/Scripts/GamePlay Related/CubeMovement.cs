@@ -8,8 +8,8 @@ public class CubeMovement : MonoBehaviour
     public Transform pivot;
     public Transform ghostPlayer;
     public LayerMask contactWallLayer;
-
     public InputManager inputManager;
+
 
     private void Awake()
     {
@@ -40,25 +40,14 @@ public class CubeMovement : MonoBehaviour
 
             pivot.position = transform.position + (directionVector * pivotOffset.x) + (Vector3.down * pivotOffset.y);
 
-            //simulate before the action in order to get an ideal result
+            //Simulate Before the Action In Order To Get Ideal Result
             CopyTransformData(transform, ghostPlayer);
             ghostPlayer.RotateAround(pivot.position, axis, angle);
 
             
             GameObject rotateParent = new GameObject("RotateParent");
             rotateParent.transform.position = pivot.transform.position;
-            transform.SetParent(rotateParent.transform);
-
-            // float elapsedTime = 0f;
-            // while (elapsedTime < rollDuration)
-            // {
-            //     elapsedTime += Time.deltaTime;
-
-            //     transform.RotateAround(pivot.position, axis, (angle * (Time.deltaTime / rollDuration)));
-            //     transform.RotateAround(pivot.position, axis, ));
-            //     yield return null;
-            // }
-            
+            transform.SetParent(rotateParent.transform);            
             
             rotateParent.LeanRotate(axis * 90, rollDuration).setEaseOutBounce().setOnComplete(() =>
             {
@@ -69,15 +58,9 @@ public class CubeMovement : MonoBehaviour
             });
 
             yield return null;
-
-            // CopyTransformData(ghostPlayer, transform);
-
-            // isRolling = false;
         }
 
     }
-
-
 
     public void CopyTransformData(Transform source, Transform target)
     {
