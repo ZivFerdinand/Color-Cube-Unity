@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private MeshRenderer[] cubeTileChildren;
     private MeshRenderer[] cubeSideChildren;
 
+
     public TextMeshProUGUI untouchedColorStatusUI;
     public GameObject cubeTile;
     public GameObject cubeSides;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
         cubeTileChildren = cubeTile.GetComponentsInChildren<MeshRenderer>();
         
+        //Set Cube Sides Color
         for (int i = 0; i < cubeSideChildren.Length;i++)
         {
             Color x = new Color();
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
             cubeSideChildren[i].material.SetColor("_Color", x);
         }
 
+        //Set Frame Tiles Color
         for (int i = 1; i < cubeTileChildren.Length; i++)
         {
             Color x = new Color();
@@ -80,7 +83,10 @@ public class GameManager : MonoBehaviour
             if (levelData[0].tileData[i - 1] == TileData.Color)
             {
                 levelColorChecker[i - 1] = false;
+
+                //Set Level Left Colors that Are Untouched
                 untouchedColor++;
+                
                 cubeTileChildren[i].material.SetColor("_Color", x);
             }
             else
