@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1c82dae05cd3942992275010e904f2, type: 3}
   m_Name: Level_2
   m_EditorClassIdentifier: 
-  levelName: The Opening
-  levelNumber: 0
+  levelName: Next Chapter
+  levelNumber: 2
   gridSize: 3
   tileData: 010000000100000000000000010000000100000000000000000000000000000000000000
   tileColor: 040000000200000000000000010000000200000000000000000000000000000000000000

@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     private MeshRenderer[] cubeSideChildren;
     private Image[] levelStatusUIChildren;
 
-
     public TextMeshProUGUI untouchedColorStatusUI;
+    public TextMeshProUGUI levelNameUI;
     public GameObject cubeTile;
     public GameObject cubeSides;
 
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
         levelColorChecker = new bool[levelData[currentSelectedLevel].tileData.Length];
+
+        levelNameUI.text = levelData[currentSelectedLevel].levelName;
 
         levelStatusUIChildren = levelStatusUI.GetComponentsInChildren<Image>();
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
@@ -113,7 +115,9 @@ public class GameManager : MonoBehaviour
                 levelStatusUIChildren[i].color = Color.black;
             }
             else
-                levelStatusUIChildren[i].color = Color.clear;
+            {
+                GameObject.Find("Bar (" + i).gameObject.SetActive(false);
+            }
         }
     }
 
