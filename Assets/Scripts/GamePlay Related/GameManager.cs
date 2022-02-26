@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
@@ -9,25 +10,30 @@ public class GameManager : MonoBehaviour
     private int levelTotal;
     private int untouchedColor;
     private int currentSelectedLevel;
+    private int levelStatusUI_NextIndex;
     private MeshRenderer[] cubeTileChildren;
     private MeshRenderer[] cubeSideChildren;
+    private Image[] levelStatusUIChildren;
 
 
     public TextMeshProUGUI untouchedColorStatusUI;
     public GameObject cubeTile;
     public GameObject cubeSides;
 
+    public GameObject levelStatusUI;
+
     public void Awake()
     {
         currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
-        untouchedColor = 0;
+        untouchedColor = levelStatusUI_NextIndex = 0;
 
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
         levelColorChecker = new bool[levelData[currentSelectedLevel].tileData.Length];
 
+        levelStatusUIChildren = levelStatusUI.GetComponentsInChildren<Image>();
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
         cubeTileChildren = cubeTile.GetComponentsInChildren<MeshRenderer>();
-        
+
         //Set Cube Sides Color
         for (int i = 0; i < cubeSideChildren.Length;i++)
         {
@@ -98,6 +104,17 @@ public class GameManager : MonoBehaviour
                 cubeTileChildren[i].material.SetColor("_Color", Color.clear);
             }
         }
+
+
+        for (int i = 0; i < levelStatusUIChildren.Length; i++)
+        {
+            if (i < untouchedColor)
+            {
+                levelStatusUIChildren[i].color = Color.black;
+            }
+            else
+                levelStatusUIChildren[i].color = Color.clear;
+        }
     }
 
 
@@ -118,6 +135,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(levelData[currentSelectedLevel].tileColor[touchedPlane].ToString() + "s are touching");
                 untouchedColor--;
+                levelStatusUIChildren[levelStatusUI_NextIndex++].color = ColorEnumToColorUnity(levelData[currentSelectedLevel].tileColor[touchedPlane]);
             }
             levelColorChecker[touchedPlane] = true;
             
@@ -125,5 +143,30 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
+    private Color ColorEnumToColorUnity(TileColor x)
+    {
+        Color y = new Color();
+        switch(x)
+        {
+            case TileColor.Blue:
+                y = Color.blue;
+                break;
+            case TileColor.Green:
+                y = Color.green;
+                break;
+            case TileColor.Orange:
+                y = Color.red;
+                break;
+            case TileColor.Red:
+                y = Color.red;
+                break;
+            case TileColor.White:
+                y = Color.white;
+                break;
+            case TileColor.Yellow:
+                y = Color.yellow;
+                break;
+        }
+        return y;
+    }
 }
