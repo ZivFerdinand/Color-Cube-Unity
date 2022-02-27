@@ -68,7 +68,9 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             //A swipe is detected
             if (onSwipeDetected != null)
+            {
                 onSwipeDetected.Invoke(direction);
+            }
         }
 
         //reset the variables

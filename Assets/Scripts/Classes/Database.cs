@@ -45,6 +45,17 @@ namespace Database
                 return PlayerPrefs.GetInt("sceneLevel", 0);
             }
         }
+        public static int gridLevelSize
+        {
+            set
+            {
+                PlayerPrefs.SetInt("gridSize", value);
+            }
+            get
+            {
+                return PlayerPrefs.GetInt("gridSize", 0);
+            }
+        }
     }
 
     public class Functions

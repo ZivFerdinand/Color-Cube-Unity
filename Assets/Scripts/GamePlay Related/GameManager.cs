@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
         levelColorChecker = new bool[levelData[currentSelectedLevel].tileData.Length];
 
+        Database.LevelRelated.gridLevelSize = levelData[currentSelectedLevel].gridSize;
         levelNameUI.text = levelData[currentSelectedLevel].levelName;
 
         levelStatusUIChildren = levelStatusUI.GetComponentsInChildren<Image>();
