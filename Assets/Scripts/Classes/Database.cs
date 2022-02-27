@@ -66,5 +66,37 @@ namespace Database
                 listTabData.Add(gd);
             }
         }
+
+        /// <summary>
+        /// Tile Color Enum to Color Variable
+        /// </summary>
+        /// <param name="tileColor">TileColor</param>
+        /// <returns></returns>
+        public static Color ColorEnumToColorUnity(TileColor tileColor)
+        {
+            Color y = new Color();
+            switch(tileColor)
+            {
+                case TileColor.Blue:
+                    y = Color.blue;
+                    break;
+                case TileColor.Green:
+                    y = Color.green;
+                    break;
+                case TileColor.Orange:
+                    y = Color.red;
+                    break;
+                case TileColor.Red:
+                    y = Color.red;
+                    break;
+                case TileColor.White:
+                    y = Color.white;
+                    break;
+                case TileColor.Yellow:
+                    y = Color.yellow;
+                    break;
+            }
+            return y;
+        }
     }
 }

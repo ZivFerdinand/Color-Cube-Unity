@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        Debug.Log("Level: " + currentSelectedLevel);
         currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
         untouchedColor = levelStatusUI_NextIndex = 0;
 
@@ -124,7 +125,6 @@ public class GameManager : MonoBehaviour
 
     public void  Update()
     {
-        Debug.Log(currentSelectedLevel);
         untouchedColorStatusUI.text = "Untouched Colors:\n" + untouchedColor.ToString();
         int touchedPlane = CheckChildCollide.collidedTileIndex;
         int touchedCubeSide = TouchingCubeArea.touchingSideIndex;
@@ -139,38 +139,10 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(levelData[currentSelectedLevel].tileColor[touchedPlane].ToString() + "s are touching");
                 untouchedColor--;
-                levelStatusUIChildren[levelStatusUI_NextIndex++].color = ColorEnumToColorUnity(levelData[currentSelectedLevel].tileColor[touchedPlane]);
+                levelStatusUIChildren[levelStatusUI_NextIndex++].color = Database.Functions.ColorEnumToColorUnity(levelData[currentSelectedLevel].tileColor[touchedPlane]);
             }
             levelColorChecker[touchedPlane] = true;
             
         }
-    }
-
-
-    private Color ColorEnumToColorUnity(TileColor x)
-    {
-        Color y = new Color();
-        switch(x)
-        {
-            case TileColor.Blue:
-                y = Color.blue;
-                break;
-            case TileColor.Green:
-                y = Color.green;
-                break;
-            case TileColor.Orange:
-                y = Color.red;
-                break;
-            case TileColor.Red:
-                y = Color.red;
-                break;
-            case TileColor.White:
-                y = Color.white;
-                break;
-            case TileColor.Yellow:
-                y = Color.yellow;
-                break;
-        }
-        return y;
     }
 }
