@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject levelStatusUI;
 
-    public void Awake()
+    public void Start()
     {
         Debug.Log("Level: " + currentSelectedLevel);
         currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             if (i < untouchedColor)
             {
+                GameObject.Find("Bar (" + i).gameObject.SetActive(true);
                 levelStatusUIChildren[i].color = Color.black;
             }
             else
