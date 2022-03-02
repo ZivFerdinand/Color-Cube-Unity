@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
                 case TileColor.Yellow:
                     x = Color.yellow;
                     break;
+                default:
+                    x = Color.white;
+                    break;
             }
             
             cubeSideChildren[i].material.SetColor("_Color", x);
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 levelColorChecker[i - 1] = true;
-                cubeTileChildren[i].material.SetColor("_Color", Color.clear);
+                cubeTileChildren[i].material.SetColor("_Color", Color.white);
             }
         }
 
