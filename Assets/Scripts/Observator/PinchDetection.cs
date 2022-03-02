@@ -6,11 +6,15 @@ public class PinchDetection : MonoBehaviour
 {
     private TouchControls controls;
     private Coroutine zoomCoroutine;
+    private Camera fovValue;
 
     public float zoomSpeed;
 
     private void Awake()
     {
+        fovValue = Camera.main;
+        fovValue.fieldOfView = Database.Cameras.lastFOVValue;
+        
         controls = new TouchControls();
     }
     private void OnEnable()
@@ -49,12 +53,15 @@ public class PinchDetection : MonoBehaviour
 
             if(distance>previousDistance)
             {
-                Camera.main.fieldOfView += 1 * zoomSpeed * Time.deltaTime;
+                fovValue.fieldOfView += 1 * zoomSpeed * Time.deltaTime;
             }
             else if(distance<previousDistance)
             {
-                Camera.main.fieldOfView -= 1 * zoomSpeed * Time.deltaTime;
+                fovValue.fieldOfView -= 1 * zoomSpeed * Time.deltaTime;
             }
+
+            //Keep Current FOV Value
+            Database.Cameras.lastFOVValue = fovValue.fieldOfView;
 
             previousDistance = distance;
             yield return null;

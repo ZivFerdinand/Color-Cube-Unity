@@ -27,7 +27,7 @@ namespace Database
             }
             get
             {
-                return PlayerPrefs.GetFloat("camFOV", 0);
+                return PlayerPrefs.GetFloat("camFOV", 61);
             }
         }
     }
