@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CubeMovement : MonoBehaviour
 {
+    private Vector2 VectorDebugger = new Vector2();
     public float rollDuration = 1f;
     public static bool isRolling;
     public Transform pivot;
@@ -18,10 +19,13 @@ public class CubeMovement : MonoBehaviour
 
     void Initialize()
     {
+        VectorDebugger = new Vector2();
         inputManager.onSwipeDetected += Roll;
         isRolling = false;
     }
-
+    void Update()
+    {
+    }
     private void Roll(InputManager.Direction direction)
     {
         StartCoroutine(RollToDirection(direction));
@@ -29,35 +33,48 @@ public class CubeMovement : MonoBehaviour
 
     private IEnumerator RollToDirection(InputManager.Direction swipeDirection)
     {
-        if (!isRolling)
+
+        if (Database.Functions.InRangeInclusive(0f,Database.LevelRelated.gridLevelSize - 1,VectorDebugger.x-Database.Functions.DirectionEnumToVectorUnity(swipeDirection).x) &&
+        Database.Functions.InRangeInclusive(0f,Database.LevelRelated.gridLevelSize - 1,VectorDebugger.y-Database.Functions.DirectionEnumToVectorUnity(swipeDirection).y))
         {
-            isRolling = true;
-
-            float angle = 90f;
-            Vector3 axis = GetAxis(swipeDirection);
-            Vector3 directionVector = GetDirectionVector(swipeDirection);
-            Vector2 pivotOffset = GetPivotOffset(swipeDirection);
-
-            pivot.position = transform.position + (directionVector * pivotOffset.x) + (Vector3.down * pivotOffset.y);
-
-            //Simulate Before the Action In Order To Get Ideal Result
-            CopyTransformData(transform, ghostPlayer);
-            ghostPlayer.RotateAround(pivot.position, axis, angle);
-
-            
-            GameObject rotateParent = new GameObject("RotateParent");
-            rotateParent.transform.position = pivot.transform.position;
-            transform.SetParent(rotateParent.transform);            
-            
-            rotateParent.LeanRotate(axis * 90, rollDuration).setEaseOutBounce().setOnComplete(() =>
+            if (!isRolling)
             {
-                transform.SetParent(null);
-                Destroy(rotateParent);
-                CopyTransformData(ghostPlayer, transform);
-                isRolling = false;
-            });
+                isRolling = true;
 
-            yield return null;
+                float angle = 90f;
+                Vector3 axis = GetAxis(swipeDirection);
+                Vector3 directionVector = GetDirectionVector(swipeDirection);
+                Vector2 pivotOffset = GetPivotOffset(swipeDirection);
+
+                pivot.position = transform.position + (directionVector * pivotOffset.x) + (Vector3.down * pivotOffset.y);
+
+                //Simulate Before the Action In Order To Get Ideal Result
+                CopyTransformData(transform, ghostPlayer);
+                ghostPlayer.RotateAround(pivot.position, axis, angle);
+
+
+                GameObject rotateParent = new GameObject("RotateParent");
+                rotateParent.transform.position = pivot.transform.position;
+                transform.SetParent(rotateParent.transform);
+
+                rotateParent.LeanRotate(axis * 90, rollDuration).setEaseOutBounce().setOnComplete(() =>
+                {
+                    transform.SetParent(null);
+                    Destroy(rotateParent);
+                    CopyTransformData(ghostPlayer, transform);
+                    isRolling = false;
+                    if (swipeDirection == InputManager.Direction.Right)
+                        VectorDebugger -= Vector2.right;
+                    if (swipeDirection == InputManager.Direction.Down)
+                        VectorDebugger -= Vector2.down;
+                    if (swipeDirection == InputManager.Direction.Up)
+                        VectorDebugger -= Vector2.up;
+                    if (swipeDirection == InputManager.Direction.Left)
+                        VectorDebugger -= Vector2.left;
+                });
+
+                yield return null;
+            }
         }
 
     }
