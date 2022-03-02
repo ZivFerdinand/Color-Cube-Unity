@@ -6,13 +6,13 @@ using Database;
 
 public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-
     public enum Direction { Left, Up, Right, Down, None }
 
     Direction direction;
     Vector2 startPos, endPos;
     public float swipeThreshold = 100f;
     bool draggingStarted;
+
 
     public Action<Direction> onSwipeDetected;
     private void Awake()
@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     }
     private void Update()
     {
-        //Debugger();
+        Debugger();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -48,11 +48,13 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
                 
                 if(dir * (X2 - X1)>=0)
                 {
-                    direction = (dir * (Y2 - Y1) >= 0) ? Direction.Right : Direction.Down;
+                    direction = (dir * (Y2 - Y1) >= 0) ? Direction.Right: Direction.Down;
+                    
                 }
                 else
                 {
                     direction = (dir * (Y2 - Y1) >= 0) ? Direction.Up : Direction.Left;
+                    
                 }
             }
             else
@@ -70,6 +72,7 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             if (onSwipeDetected != null)
             {
                 onSwipeDetected.Invoke(direction);
+                
             }
         }
 
@@ -81,6 +84,5 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     
     public void Debugger()
     {
-        Debug.Log(direction);
     }
 }

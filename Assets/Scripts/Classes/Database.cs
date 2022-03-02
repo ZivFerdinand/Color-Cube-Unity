@@ -81,7 +81,7 @@ namespace Database
         /// <summary>
         /// Tile Color Enum to Color Variable
         /// </summary>
-        /// <param name="tileColor">TileColor</param>
+        /// <param name="tileColor">TileColor Enum</param>
         /// <returns></returns>
         public static Color ColorEnumToColorUnity(TileColor tileColor)
         {
@@ -108,6 +108,48 @@ namespace Database
                     break;
             }
             return y;
+        }
+
+        /// <summary>
+        /// Direction in InputManager Enum to Vector2
+        /// </summary>
+        /// <param name="direction">Direction Enum</param>
+        /// <returns></returns>
+        public static Vector2 DirectionEnumToVectorUnity(InputManager.Direction direction)
+        {
+            Vector2 y = new Vector2();
+            switch(direction)
+            {
+                case InputManager.Direction.Down:
+                    y = Vector2.down;
+                    break;
+                case InputManager.Direction.Up:
+                    y = Vector2.up;
+                    break;
+                case InputManager.Direction.Right:
+                    y = Vector2.right;
+                    break;
+                case InputManager.Direction.Left:
+                    y = Vector2.left;
+                    break;
+                default:
+                    y = Vector2.zero;
+                    break;
+            }
+
+            return y;
+        }
+
+        /// <summary>
+        /// Check Whether a Number is In The Given Range (Inclusively)
+        /// </summary>
+        /// <param name="low">Lowest Range</param>
+        /// <param name="high">Highest Range</param>
+        /// <param name="toBeChecked">The Spesific Variable To Be Checked</param>
+        /// <returns></returns>
+        public static bool InRangeInclusive(float low, float high, float toBeChecked)
+        {
+            return (toBeChecked >= low && toBeChecked <= high) ? true : false;
         }
     }
 }
