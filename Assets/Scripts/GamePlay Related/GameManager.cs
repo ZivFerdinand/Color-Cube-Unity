@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
             
-            cubeSideChildren[i].material.SetColor("_Color", x);
+            cubeSideChildren[i].materials[0].color = x;
         }
 
         //Set Frame Tiles Color
