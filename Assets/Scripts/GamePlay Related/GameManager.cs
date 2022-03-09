@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private List<LevelScriptableObject> levelData = new List<LevelScriptableObject>();
     private bool[] levelColorChecker;
+
+    [SerializeField] private ColorMap colorPallete;
     private int levelTotal;
     private int untouchedColor;
     private int currentSelectedLevel;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject cubeSides;
 
     public GameObject levelStatusUI;
+    [SerializeField] private float startAnimationDuration = 0.5f;
 
     public void Start()
     {
@@ -45,25 +48,25 @@ public class GameManager : MonoBehaviour
             switch (levelData[currentSelectedLevel].cubeSidesColor[i])
             {
                 case TileColor.Blue:
-                    x = Color.blue;
+                    x = colorPallete.colors[1];
                     break;
                 case TileColor.Green:
-                    x = Color.green;
+                    x = colorPallete.colors[2];
                     break;
                 case TileColor.Orange:
-                    x = Color.red;
+                    x = colorPallete.colors[3];
                     break;
                 case TileColor.Red:
-                    x = Color.red;
+                    x = colorPallete.colors[4];
                     break;
                 case TileColor.White:
-                    x = Color.white;
+                    x = colorPallete.colors[5];
                     break;
                 case TileColor.Yellow:
-                    x = Color.yellow;
+                    x = colorPallete.colors[6];
                     break;
                 default:
-                    x = Color.white;
+                    x = colorPallete.colors[0];
                     break;
             }
             
@@ -77,22 +80,25 @@ public class GameManager : MonoBehaviour
             switch (levelData[currentSelectedLevel].tileColor[i - 1])
             {
                 case TileColor.Blue:
-                    x = Color.blue;
+                    x = colorPallete.colors[1];
                     break;
                 case TileColor.Green:
-                    x = Color.green;
+                    x = colorPallete.colors[2];
                     break;
                 case TileColor.Orange:
-                    x = Color.red;
+                    x = colorPallete.colors[3];
                     break;
                 case TileColor.Red:
-                    x = Color.red;
+                    x = colorPallete.colors[4];
                     break;
                 case TileColor.White:
-                    x = Color.white;
+                    x = colorPallete.colors[5];
                     break;
                 case TileColor.Yellow:
-                    x = Color.yellow;
+                    x = colorPallete.colors[6];
+                    break;
+                default:
+                    x = colorPallete.colors[0];
                     break;
             }
 
@@ -125,6 +131,26 @@ public class GameManager : MonoBehaviour
                 GameObject.Find("Bar (" + i).gameObject.SetActive(false);
             }
         }
+
+        PlayStartAnimation();
+    }
+
+    public void PlayStartAnimation()
+    {
+        GameObject[] animatedObject = GameObject.FindGameObjectsWithTag("anim1");
+        GameObject parent = GameObject.FindGameObjectWithTag("parent");
+        parent.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        parent.transform.rotation = Quaternion.Euler(0, -180, 0);
+        parent.transform.LeanRotate(new Vector3(0, 0, 0), startAnimationDuration).setEaseInOutElastic();
+        parent.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(() =>
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<CubeMovement>().FallingAnimation();
+            foreach (GameObject anim in animatedObject)
+            {  
+                anim.transform.SetParent(null);
+            }
+            Destroy(parent);
+        });
     }
 
 
