@@ -17,12 +17,11 @@ public class GameManager : MonoBehaviour
     private MeshRenderer[] cubeSideChildren;
     private Image[] levelStatusUIChildren;
 
-    public TextMeshProUGUI untouchedColorStatusUI;
-    public TextMeshProUGUI levelNameUI;
     public GameObject cubeTile;
     public GameObject cubeSides;
 
     public GameObject levelStatusUI;
+    public GameObject panelUI;
     [SerializeField] private float startAnimationDuration = 0.5f;
 
     public void Start()
@@ -35,7 +34,6 @@ public class GameManager : MonoBehaviour
         levelColorChecker = new bool[levelData[currentSelectedLevel].tileData.Length];
 
         Database.LevelRelated.gridLevelSize = levelData[currentSelectedLevel].gridSize;
-        levelNameUI.text = levelData[currentSelectedLevel].levelName;
 
         levelStatusUIChildren = levelStatusUI.GetComponentsInChildren<Image>();
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
@@ -139,10 +137,17 @@ public class GameManager : MonoBehaviour
     {
         GameObject[] animatedObject = GameObject.FindGameObjectsWithTag("anim1");
         GameObject parent = GameObject.FindGameObjectWithTag("parent");
+
+        GameObject[] animatedObjectt = GameObject.FindGameObjectsWithTag("anim2");
+        
+        foreach(GameObject anim in animatedObjectt)
+        {
+            anim.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        }
         parent.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         parent.transform.rotation = Quaternion.Euler(0, -180, 0);
         parent.transform.LeanRotate(new Vector3(0, 0, 0), startAnimationDuration).setEaseInOutElastic();
-        parent.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(() =>
+        parent.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(async () =>
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<CubeMovement>().FallingAnimation();
             foreach (GameObject anim in animatedObject)
@@ -150,13 +155,25 @@ public class GameManager : MonoBehaviour
                 anim.transform.SetParent(null);
             }
             Destroy(parent);
+            StartCoroutine(a());
         });
+
+    }
+    IEnumerator a()
+    {
+        
+        GameObject[] animatedObjectt = GameObject.FindGameObjectsWithTag("anim2");
+
+        foreach (GameObject anim in animatedObjectt)
+        {
+            anim.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce();
+            yield return new WaitForSeconds(2);
+        }   
     }
 
 
     public void  Update()
     {
-        untouchedColorStatusUI.text = "Untouched Colors:\n" + untouchedColor.ToString();
         int touchedPlane = CheckChildCollide.collidedTileIndex;
         int touchedCubeSide = TouchingCubeArea.touchingSideIndex;
 

@@ -8,6 +8,7 @@ TagManager:
   - anim1
   - GameManager
   - parent
+  - anim2
   layers:
   - Default
   - TransparentFX
