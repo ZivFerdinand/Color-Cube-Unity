@@ -11,13 +11,13 @@ public enum TileData
 
 public enum TileColor
 {
-    None,
-    Blue,
-    Green,
-    Orange,
-    Red,
-    White,
-    Yellow,
+    Default,
+    First,
+    Second,
+    Third,
+    Forth,
+    Fifth,
+    Sixth,
 
 };
 

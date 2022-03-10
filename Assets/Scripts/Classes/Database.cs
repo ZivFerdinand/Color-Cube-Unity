@@ -79,32 +79,67 @@ namespace Database
         }
 
         /// <summary>
+        /// Tile Color Enum to Color Variable (String)
+        /// </summary>
+        /// <param name="tileColor">TileColor Enum</param>
+        /// <returns></returns>
+        public static string ColorEnumToColorUnity(TileColor tileColor)
+        {
+            string y = "";
+            switch(tileColor)
+            {
+                case TileColor.First:
+                    y = "First Color";
+                    break;
+                case TileColor.Second:
+                    y = "Second Color";
+                    break;
+                case TileColor.Third:
+                    y = "Third Color";
+                    break;
+                case TileColor.Forth:
+                    y = "Forth Color";
+                    break;
+                case TileColor.Fifth:
+                    y = "Fifth Color";
+                    break;
+                case TileColor.Sixth:
+                    y = "Sixth Color";
+                    break;
+            }
+            return y;
+        }
+        
+        /// <summary>
         /// Tile Color Enum to Color Variable
         /// </summary>
         /// <param name="tileColor">TileColor Enum</param>
         /// <returns></returns>
-        public static Color ColorEnumToColorUnity(TileColor tileColor)
+        public static Color ColorEnumToColorUnity(TileColor tileColor, ColorMap colorPallete)
         {
             Color y = new Color();
             switch(tileColor)
             {
-                case TileColor.Blue:
-                    y = Color.blue;
+                case TileColor.First:
+                    y = colorPallete.colors[1];
                     break;
-                case TileColor.Green:
-                    y = Color.green;
+                case TileColor.Second:
+                    y = colorPallete.colors[2];
                     break;
-                case TileColor.Orange:
-                    y = Color.red;
+                case TileColor.Third:
+                    y = colorPallete.colors[3];
                     break;
-                case TileColor.Red:
-                    y = Color.red;
+                case TileColor.Forth:
+                    y = colorPallete.colors[4];
                     break;
-                case TileColor.White:
-                    y = Color.white;
+                case TileColor.Fifth:
+                    y = colorPallete.colors[5];
                     break;
-                case TileColor.Yellow:
-                    y = Color.yellow;
+                case TileColor.Sixth:
+                    y = colorPallete.colors[6];
+                    break;
+                default:
+                    y = colorPallete.colors[0];
                     break;
             }
             return y;
@@ -151,5 +186,6 @@ namespace Database
         {
             return (toBeChecked >= low && toBeChecked <= high) ? true : false;
         }
+
     }
 }

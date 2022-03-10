@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Audio
+  - GameManager
+  - Parent
+  - Animation_0
+  - Animation_1
   layers:
   - Default
   - TransparentFX
@@ -13,8 +17,8 @@ TagManager:
   - Water
   - UI
   - ContactWall
-  - gameplay
-  - 
+  - GamePlay
+  - Cube
   - 
   - 
   - 

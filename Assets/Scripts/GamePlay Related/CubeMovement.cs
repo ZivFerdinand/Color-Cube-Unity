@@ -10,6 +10,8 @@ public class CubeMovement : MonoBehaviour
     public Transform ghostPlayer;
     public LayerMask contactWallLayer;
     public InputManager inputManager;
+    [SerializeField] private float fallDuration = 0.8f;
+    private bool hasFallen = false;
 
 
     private void Awake()
@@ -23,19 +25,24 @@ public class CubeMovement : MonoBehaviour
         inputManager.onSwipeDetected += Roll;
         isRolling = false;
     }
-    void Update()
+
+    public void FallingAnimation()
     {
+        transform.LeanMoveY(1, fallDuration).setEaseInOutSine().setOnComplete(() => { hasFallen = true; });
     }
+
     private void Roll(InputManager.Direction direction)
     {
+        if(!hasFallen)
+            return;
         StartCoroutine(RollToDirection(direction));
     }
 
     private IEnumerator RollToDirection(InputManager.Direction swipeDirection)
     {
 
-        if (Database.Functions.InRangeInclusive(0f,Database.LevelRelated.gridLevelSize - 1,VectorDebugger.x-Database.Functions.DirectionEnumToVectorUnity(swipeDirection).x) &&
-        Database.Functions.InRangeInclusive(0f,Database.LevelRelated.gridLevelSize - 1,VectorDebugger.y-Database.Functions.DirectionEnumToVectorUnity(swipeDirection).y))
+        if (Database.Functions.InRangeInclusive(0f, Database.LevelRelated.gridLevelSize - 1, VectorDebugger.x - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).x) &&
+        Database.Functions.InRangeInclusive(0f, Database.LevelRelated.gridLevelSize - 1, VectorDebugger.y - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).y))
         {
             if (!isRolling)
             {
@@ -57,7 +64,7 @@ public class CubeMovement : MonoBehaviour
                 rotateParent.transform.position = pivot.transform.position;
                 transform.SetParent(rotateParent.transform);
 
-                rotateParent.LeanRotate(axis * 90, rollDuration).setEaseOutBounce().setOnComplete(() =>
+                rotateParent.LeanRotate(axis * 90, rollDuration).setEaseInOutQuad().setOnComplete(() =>
                 {
                     transform.SetParent(null);
                     Destroy(rotateParent);
