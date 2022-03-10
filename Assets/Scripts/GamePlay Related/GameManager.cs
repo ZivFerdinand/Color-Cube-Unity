@@ -129,7 +129,9 @@ public class GameManager : MonoBehaviour
         {
             anim.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         }
-        
+
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(1.6f, 23f, 1.6f);
+
         parentGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         parentGameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         parentGameObject.transform.LeanRotate(new Vector3(0, 0, 0), startAnimationDuration).setEaseInOutElastic();
@@ -149,8 +151,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject anim in animatedGameObject_1)
         {
-            anim.transform.LeanScale(Vector3.one, Mathf.Sqrt(startAnimationDuration)).setEaseOutBounce();
-            yield return new WaitForSeconds(0.3f);
+            anim.transform.LeanScale(Vector3.one, Mathf.Sqrt(startAnimationDuration) / 2).setEaseOutBounce();
+            yield return new WaitForSeconds(0.2f);
         }   
     }
 }
