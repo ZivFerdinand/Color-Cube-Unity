@@ -6,13 +6,13 @@ using System.Collections.Generic;
 public class LevelScriptableObject : ScriptableObject
 {
     public string levelName;
+
     public int levelNumber;
     public int gridSize;
-    [SerializeField]
+
     public TileData[] tileData;
-    [SerializeField]
+    
     public TileColor[] tileColor;
-    [SerializeField]
     public TileColor[] cubeSidesColor = new TileColor[6];
 
     public void OnValidate()

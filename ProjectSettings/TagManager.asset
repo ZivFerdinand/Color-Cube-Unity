@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Audio
-  - anim1
   - GameManager
-  - parent
-  - anim2
+  - Parent
+  - Animation_0
+  - Animation_1
   layers:
   - Default
   - TransparentFX
