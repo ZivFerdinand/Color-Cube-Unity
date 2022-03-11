@@ -7,6 +7,7 @@ public class ChangeScene : MonoBehaviour
 {
     public void onPlayButtonClick()
     {
+        SceneManager.UnloadScene(SceneManager.GetActiveScene());
         SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
     public void onCloseButtonClick()

@@ -9,6 +9,7 @@ TagManager:
   - Parent
   - Animation_0
   - Animation_1
+  - LevelDone
   layers:
   - Default
   - TransparentFX

@@ -56,6 +56,7 @@ namespace Database
                 return PlayerPrefs.GetInt("gridSize", 0);
             }
         }
+        
     }
 
     public class Functions
