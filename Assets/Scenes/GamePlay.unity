@@ -278,6 +278,8 @@ MonoBehaviour:
   cubeSides: {fileID: 898946019}
   levelStatusUI: {fileID: 414251206}
   panelUI: {fileID: 967282580}
+  cubePlayer: {fileID: 1973204016}
+  onLevelDoneLogo: {fileID: 1102998273}
 --- !u!114 &12358103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,19 +805,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4981615
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.4981615
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.50183177
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.50183177
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -827,7 +829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525738318326989570, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.421
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5934259633127529155, guid: b7dfeb646f1469c4e931c3e6ce3125c7, type: 3}
       propertyPath: m_Name
@@ -1253,6 +1255,7 @@ RectTransform:
   - {fileID: 1266788175}
   - {fileID: 2128810976}
   - {fileID: 1601178501}
+  - {fileID: 1102998274}
   m_Father: {fileID: 967282581}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2702,6 +2705,81 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1102998273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102998274}
+  - component: {fileID: 1102998276}
+  - component: {fileID: 1102998275}
+  m_Layer: 5
+  m_Name: CheckLogo
+  m_TagString: LevelDone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1102998274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102998273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 414251207}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 780, y: -63.96095}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1102998275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102998273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: aed354829a414b444bdcd6c1dfe160b7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1102998276
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102998273}
+  m_CullTransparentMesh: 1
 --- !u!1 &1118794919
 GameObject:
   m_ObjectHideFlags: 0

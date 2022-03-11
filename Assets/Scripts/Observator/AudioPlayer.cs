@@ -20,7 +20,6 @@ public class AudioPlayer : MonoBehaviour
         sfxDict.Clear();
         for(int i=0;i<soundEffects.Length;i++)
         {
-            Debug.Log(soundEffects[i].name);
             sfxDict.Add(soundEffects[i].name, soundEffects[i].clip);
         }
     }
