@@ -13,5 +13,4 @@ Developers:
 
 
 Private Project
----Keju, Inc.---
 ---Indonesia----
