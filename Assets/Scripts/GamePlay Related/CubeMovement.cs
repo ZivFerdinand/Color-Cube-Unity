@@ -4,13 +4,13 @@ using UnityEngine;
 public class CubeMovement : MonoBehaviour
 {
     private Vector2 VectorDebugger = new Vector2();
-    public float rollDuration = 1f;
     public static bool isRolling;
     public Transform pivot;
     public Transform ghostPlayer;
     public LayerMask contactWallLayer;
     public InputManager inputManager;
     [SerializeField] private float fallDuration = 0.8f;
+    [SerializeField] private float rollDuration = 1f;
     private bool hasFallen = false;
 
 

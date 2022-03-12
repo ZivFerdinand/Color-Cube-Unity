@@ -2,12 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Database;
-
+using System.Collections;
 public class ChangeScene : MonoBehaviour
 {
     public void onPlayButtonClick()
     {
-        SceneManager.UnloadScene(SceneManager.GetActiveScene());
         SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
     public void onCloseButtonClick()
