@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] 
+    private float startAnimationDuration = 0.5f;
     private List<LevelScriptableObject> levelData = new List<LevelScriptableObject>();
 
     [SerializeField] 
     private ColorMap colorPallete;
     
-    [SerializeField] 
-    private float startAnimationDuration = 0.5f;
+    
 
     private bool[] levelColorChecker;
 
