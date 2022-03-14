@@ -8,26 +8,27 @@ public class PinchDetection : MonoBehaviour
     private Coroutine zoomCoroutine;
     private Camera fovValue;
 
-    public float zoomSpeed;
+    private float zoomSpeed;
 
-    private void Awake()
+    void Awake()
     {
         fovValue = Camera.main;
         fovValue.fieldOfView = Database.Cameras.lastFOVValue;
         
         controls = new TouchControls();
     }
-    private void OnEnable()
+    void OnEnable()
     {
         controls.Enable();
     }
-    private void OnDisable()
+    void OnDisable()
     {
         controls.Disable();
     }
 
-    private void Start()
+    void Start()
     {
+        zoomSpeed = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().zoomSpeed;
         controls.Touch.SecondaryTouchContact.started += _ => ZoomStart();
         controls.Touch.SecondaryTouchContact.canceled += _ => ZoomEnd();
     }
@@ -42,7 +43,7 @@ public class PinchDetection : MonoBehaviour
         StopCoroutine(zoomCoroutine);
     }
 
-    IEnumerator ZoomDetection()
+    private IEnumerator ZoomDetection()
     {
         float previousDistance = 0f, distance = 0f;
 

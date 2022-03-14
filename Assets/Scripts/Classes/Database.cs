@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Database
 {
-    
     public class Cameras
     {
         public static bool isInverted

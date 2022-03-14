@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TouchingCubeArea : MonoBehaviour
+public class CubeSideCollideReceiver : MonoBehaviour
 {
 
     public static int touchingSideIndex;
     
-    
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider collision)
     {

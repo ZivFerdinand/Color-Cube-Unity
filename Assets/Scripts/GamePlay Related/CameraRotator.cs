@@ -8,12 +8,14 @@ using Database;
 public class CameraRotator : MonoBehaviour
 {
     private float targetRotation = 0;
+    private float rotateDuration;
 
 
     public Button cameraButton;
-    public float rotateDuration;
+
     void Start()
     {
+        rotateDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().cameraRotateDuration;
         cameraButton.enabled = true;
 
         //Get Last Target Rotation
@@ -22,6 +24,7 @@ public class CameraRotator : MonoBehaviour
         //Set Rotation to Last Saved Angle
         transform.eulerAngles = new Vector3(0, targetRotation, 0);
     }
+    
     public void onCameraButtonClick()
     {
         cameraButton.enabled = false;

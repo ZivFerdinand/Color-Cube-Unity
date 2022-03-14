@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] 
-    private float startAnimationDuration = 0.5f;
+    private float startAnimationDuration;
     private List<LevelScriptableObject> levelData = new List<LevelScriptableObject>();
 
     [SerializeField] 
@@ -39,8 +38,10 @@ public class GameManager : MonoBehaviour
     private GameObject onLevelDoneLogo;
 
 
-    public void Start()
+    void Start()
     {
+        startAnimationDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().startingAnimationDuration;
+        
         currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
         Debug.Log("Level Index (StartingFrom0): " + currentSelectedLevel);
         untouchedColor = currentLevelProgress = 0;
@@ -96,11 +97,11 @@ public class GameManager : MonoBehaviour
         PlayStartAnimation();
     }
 
-    public void  Update()
+    void Update()
     {
         #region VariableAssigning
-        int touchedPlaneIndex = CheckChildCollide.collidedTileIndex;
-        int touchedCubeSideIndex = TouchingCubeArea.touchingSideIndex;
+        int touchedPlaneIndex = CubeSideCollideChecker.collidedTileIndex;
+        int touchedCubeSideIndex = CubeSideCollideReceiver.touchingSideIndex;
 
         if(cubePlayer.transform.position.y != 1f)
         {
