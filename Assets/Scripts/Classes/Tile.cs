@@ -23,5 +23,5 @@ public enum TileColor
 
 public class Tile
 {
-    public static TileData[][] fill;
+    
 }

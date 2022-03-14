@@ -4,19 +4,34 @@ using UnityEngine;
 public class CubeMovement : MonoBehaviour
 {
     private Vector2 VectorDebugger = new Vector2();
+
     public static bool isRolling;
     public Transform pivot;
     public Transform ghostPlayer;
     public LayerMask contactWallLayer;
     public InputManager inputManager;
-    [SerializeField] private float fallDuration = 0.8f;
-    [SerializeField] private float rollDuration = 1f;
+
+    private float fallDuration;
+    private float rollDuration;
     private bool hasFallen = false;
 
+#region Audio
+    private AudioPlayer audioPlayer;
+    private void OnEnable()
+    {
+        audioPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioPlayer>();
+    }
+#endregion
 
-    private void Awake()
+
+    void Awake()
     {
         Initialize();
+    }
+    void Start()
+    {
+        rollDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().rollDuration;
+        fallDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().fallDuration;
     }
 
     void Initialize()
@@ -46,6 +61,8 @@ public class CubeMovement : MonoBehaviour
         {
             if (!isRolling)
             {
+                
+                audioPlayer.Play("CubeMoving");
                 isRolling = true;
 
                 float angle = 90f;
@@ -69,6 +86,7 @@ public class CubeMovement : MonoBehaviour
                     transform.SetParent(null);
                     Destroy(rotateParent);
                     CopyTransformData(ghostPlayer, transform);
+
                     isRolling = false;
                     if (swipeDirection == InputManager.Direction.Right)
                         VectorDebugger -= Vector2.right;
@@ -86,7 +104,7 @@ public class CubeMovement : MonoBehaviour
 
     }
 
-    public void CopyTransformData(Transform source, Transform target)
+    private void CopyTransformData(Transform source, Transform target)
     {
         target.localPosition = source.localPosition;
         target.localEulerAngles = source.localEulerAngles;

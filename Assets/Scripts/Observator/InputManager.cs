@@ -6,24 +6,41 @@ using Database;
 
 public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public enum Direction { Left, Up, Right, Down, None }
+    public enum Direction 
+    { 
+        Left, 
+        Up, 
+        Right, 
+        Down, 
+        None 
+    }
 
     Direction direction;
     Vector2 startPos, endPos;
-    public float swipeThreshold = 100f;
+    private float swipeThreshold;
     bool draggingStarted;
-
-
     public Action<Direction> onSwipeDetected;
-    private void Awake()
+
+
+#region Audio
+    private AudioPlayer audioPlayer;
+    private void OnEnable()
+    {
+        audioPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioPlayer>();
+    }
+#endregion
+
+
+    void Awake()
     {
         draggingStarted = false;
         direction = Direction.None;
     }
-    private void Update()
+    void Start()
     {
-        Debugger();
+        swipeThreshold = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().swipeThreshold;
     }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         draggingStarted = true;
@@ -71,6 +88,7 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             //A swipe is detected
             if (onSwipeDetected != null)
             {
+                //audioPlayer.Play("CubeMoving");
                 onSwipeDetected.Invoke(direction);
                 
             }
@@ -80,9 +98,5 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         startPos = Vector2.zero;
         endPos = Vector2.zero;
         draggingStarted = false;
-    }
-    
-    public void Debugger()
-    {
     }
 }
