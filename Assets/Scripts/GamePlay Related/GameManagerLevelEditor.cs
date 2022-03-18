@@ -14,7 +14,7 @@ public class GameManagerLevelEditor : MonoBehaviour
 
 
     private int levelTotal;
-    private int currentSelectedLevel;
+    [SerializeField] private int currentSelectedLevel;
 
     private MeshRenderer[] cubeTileChildren;
     private MeshRenderer[] cubeSideChildren;
@@ -23,17 +23,19 @@ public class GameManagerLevelEditor : MonoBehaviour
     public GameObject cubeTile;
     public GameObject cubeSides;
     public GameObject cubePlayer;
+    public TextMeshProUGUI selectedLevelText;
 
     private GameObject[] animatedGameObject_0;
     private GameObject[] animatedGameObject_1;
     private GameObject parentGameObject;
 
 
+
     void Start()
     {
         startAnimationDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().startingAnimationDuration;
-        
-        currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
+
+        selectedLevelText.text = "Selected Level: " + currentSelectedLevel;
         Debug.Log("Level Index (StartingFrom0): " + currentSelectedLevel);
 
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
