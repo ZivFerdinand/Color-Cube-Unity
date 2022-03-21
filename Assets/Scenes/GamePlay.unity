@@ -5464,6 +5464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: polished_beach
       objectReference: {fileID: 0}
+    - target: {fileID: 4968080585382166685, guid: 169f3699a1d98ab45a7461ff63d29c04, type: 3}
+      propertyPath: m_TagString
+      value: Animation_0
+      objectReference: {fileID: 0}
     - target: {fileID: 5753129348240593670, guid: 169f3699a1d98ab45a7461ff63d29c04, type: 3}
       propertyPath: m_RootOrder
       value: 0
