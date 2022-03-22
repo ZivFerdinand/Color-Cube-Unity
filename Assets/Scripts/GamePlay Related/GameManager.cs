@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
             anim.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         }
 
-        cubePlayer.transform.position = new Vector3(1.6f, 23f, 1.6f);
+        cubePlayer.transform.position = new Vector3(1.6f, 30f, 1.6f);
 
         parentGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         parentGameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
