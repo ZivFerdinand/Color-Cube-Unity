@@ -17,10 +17,9 @@ public class MainMenuSceneRunner : MonoBehaviour
     void Awake()
     {
         homeUICanvas = homeUI.GetComponent<CanvasGroup>();
-        //homeUICanvas.alpha = 1;
 
         levelCardSelectUICanvas = levelCardSelectUI.GetComponent<CanvasGroup>();
-        //levelCardSelectUICanvas.alpha = 0;
+        levelCardSelectUICanvas.alpha = 0;
     }
 
 
@@ -31,24 +30,23 @@ public class MainMenuSceneRunner : MonoBehaviour
 
     public void onPlayButtonClickedAnimation()
     {
+        //HOMEUI FADE
         homeUI.SetActive(true);
-            homeUICanvas.alpha = 1f;
-            homeUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
-            {
-                homeUI.SetActive(false);
-                //homeUICanvas.alpha = 0;
+        homeUICanvas.alpha = 1f;
+        homeUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
+        {
+            homeUI.SetActive(false);
+        });
 
-            });
+
         cubeButton.LeanMoveY(cubeButtonTargetPos.position.y, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(async() =>
         {
-            
-
+            //CARDLEVEL FADE
             levelCardSelectUI.SetActive(true);
             levelCardSelectUICanvas.alpha = 0;
             levelCardSelectUICanvas.LeanAlpha(1, fadingDuration).setOnComplete(async() =>
             {
                 levelCardSelectUI.SetActive(true);
-                //levelCardSelectUICanvas.alpha = 0;
             }); 
         });
 
@@ -56,26 +54,23 @@ public class MainMenuSceneRunner : MonoBehaviour
     }
     public void onReverseButtonClickedAnimation()
     {
-         levelCardSelectUI.SetActive(true);
-            
-            levelCardSelectUICanvas.alpha = 1;
-            levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
-            {
-                levelCardSelectUI.SetActive(false);
-                //levelCardSelectUICanvas.alpha = 0;
-            }); 
+        //CARDLEVEL FADE
+        levelCardSelectUI.SetActive(true);
+        levelCardSelectUICanvas.alpha = 1;
+        levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
+        {
+            levelCardSelectUI.SetActive(false);
+        }); 
         
 
-           
         cubeButton.LeanMoveY(0, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(async () =>
         {
+            //HOMEUI FADE
             homeUI.SetActive(true);
-            
             homeUICanvas.alpha = 0;
             homeUICanvas.LeanAlpha(1, fadingDuration).setOnComplete(async() =>
             {
                 homeUI.SetActive(true);
-                //homeUICanvas.alpha = 1;
             });
             
         });;
