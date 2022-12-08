@@ -86,7 +86,7 @@ public class CubeMovement : MonoBehaviour
                     transform.SetParent(null);
                     Destroy(rotateParent);
                     CopyTransformData(ghostPlayer, transform);
-
+                    
                     isRolling = false;
                     if (swipeDirection == InputManager.Direction.Right)
                         VectorDebugger -= Vector2.right;

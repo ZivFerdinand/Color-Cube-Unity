@@ -8,6 +8,7 @@ public class CubeLevelSelectAnimator : MonoBehaviour
     Vector3 initialPosition;
     void OnEnable()
     {
+        float x = Random.Range(0, 360f);
         int n;
         bool isNumeric = int.TryParse(this.gameObject.name, out n);
 
@@ -18,11 +19,14 @@ public class CubeLevelSelectAnimator : MonoBehaviour
 
         initialPosition = transform.localPosition;
         transform.localPosition = new Vector3(0, -Screen.height);
+        transform.rotation = Quaternion.Euler(0, 0, x);
+        transform.GetComponentInChildren<Transform>().transform.rotation = Quaternion.Euler(0,0,360f-x);
+        StartCoroutine(DelayAnimation());
     }
 
-    void Start()
+    void OnDisable()
     {
-        StartCoroutine(DelayAnimation());
+        transform.localPosition = initialPosition;
     }
 
     private IEnumerator DelayAnimation()

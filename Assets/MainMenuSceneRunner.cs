@@ -91,18 +91,19 @@ public class MainMenuSceneRunner : MonoBehaviour
         #endregion
     }
 
-    public void onMapSelectedAnimation()
+    public async void onMapSelectedAnimation()
     {
         particleCube.SetActive(false);
+        
         //CARDLEVEL FADE
         levelCardSelectUI.SetActive(true);
+        
         levelCardSelectUICanvas.alpha = 1;
         levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
         {
             levelSelectUI.SetActive(true);
             levelCardSelectUI.SetActive(false);
         });
-        
     }
 
     IEnumerator FadeWaiter()
@@ -118,5 +119,7 @@ public class MainMenuSceneRunner : MonoBehaviour
         levelCardSelectUI.SetActive(true);
         levelCardSelectUICanvas.alpha = 0;
         levelCardSelectUICanvas.LeanAlpha(1, fadingDuration);
+        levelSelectUI.SetActive(false);
+
     }
 }

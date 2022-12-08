@@ -11,8 +11,8 @@ using TMPro;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler 
 {
-    [Tooltip("Car Name Text Changer")]
-    public TextMeshProUGUI carName;
+    [Tooltip("Level Name Text Changer")]
+    public TextMeshProUGUI levelName;
     [Tooltip("Set starting page index - starting from 0")]
     public int startingPage = 0;
     [Tooltip("Threshold time for fast swipe in seconds")]

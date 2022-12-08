@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private ColorMap colorPallete;
     
-    
-
     private bool[] levelColorChecker;
 
     private int levelTotal;
