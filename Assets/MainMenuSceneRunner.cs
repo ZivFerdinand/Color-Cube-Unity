@@ -87,6 +87,7 @@ public class MainMenuSceneRunner : MonoBehaviour
         else
         {
             StartCoroutine(FadeWaiter());
+            
         }
         #endregion
     }
@@ -111,8 +112,10 @@ public class MainMenuSceneRunner : MonoBehaviour
         foreach(CubeLevelSelectAnimator a in cubeForLevelSelect)
         {
             StartCoroutine(a.DelayExitAnimation());
+            //a.transform.localPosition = a.initialPosition;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
+        
         particleCube.SetActive(true);
 
         //CARDLEVEL FADE
@@ -120,6 +123,6 @@ public class MainMenuSceneRunner : MonoBehaviour
         levelCardSelectUICanvas.alpha = 0;
         levelCardSelectUICanvas.LeanAlpha(1, fadingDuration);
         levelSelectUI.SetActive(false);
-
+        
     }
 }
