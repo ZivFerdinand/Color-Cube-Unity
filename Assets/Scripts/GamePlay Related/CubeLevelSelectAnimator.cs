@@ -9,11 +9,10 @@ public class CubeLevelSelectAnimator : MonoBehaviour
     void OnEnable()
     {
         int x = Random.Range(0, 360);
-        int n;
-        bool isNumeric = int.TryParse(this.gameObject.name, out n);
+        bool isNumeric = int.TryParse(this.gameObject.name, out int n);
 
         if (isNumeric)
-            animationQueue = int.Parse(this.gameObject.name);
+            animationQueue = n;
         else
             return;
 

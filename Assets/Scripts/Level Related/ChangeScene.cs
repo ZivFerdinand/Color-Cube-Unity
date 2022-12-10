@@ -5,21 +5,20 @@ using Database;
 using System.Collections;
 public class ChangeScene : MonoBehaviour
 {
-    public void onPlayButtonClick()
+    public void OnPlayButtonClick()
     {
         SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
-    public void onCloseButtonClick()
+    public void OnCloseButtonClick()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
-    public void onButtonCheckerClick(Button button)
+    public void OnButtonCheckerClick(Button button)
     {
-        int n;
-        bool isNumeric = int.TryParse(button.name, out n);
+        bool isNumeric = int.TryParse(button.name, out int n);
 
-        if(isNumeric)
-            Database.LevelRelated.selectedLevelFromScene = int.Parse(button.name) - 1;
+        if (isNumeric)
+            Database.LevelRelated.SelectedLevelFromScene = n - 1;
     }
 }

@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1a5d57f90adfe45add654f6bf1e520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: []
   colorPallete: {fileID: 11400000, guid: 49effa2f15543ee49b4432de71e5575a, type: 2}
   cubeTile: {fileID: 1239176767}
   cubeSides: {fileID: 898946019}
@@ -1391,7 +1392,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1489081396}
         m_TargetAssemblyTypeName: CameraRotator, Assembly-CSharp
-        m_MethodName: onCameraButtonClick
+        m_MethodName: OnCameraButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1584,7 +1585,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967282585}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: onCloseButtonClick
+        m_MethodName: OnCloseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1887,10 +1888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3109,7 +3110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967282585}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: onPlayButtonClick
+        m_MethodName: OnPlayButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

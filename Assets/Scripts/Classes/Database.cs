@@ -6,7 +6,7 @@ namespace Database
 {
     public class Cameras
     {
-        public static bool isInverted
+        public static bool IsInverted
         {
             set
             {
@@ -15,10 +15,10 @@ namespace Database
             get
             {
                 int temp = PlayerPrefs.GetInt("camInverted", 0);
-                return (temp == 1) ? true : false;
+                return (temp == 1);
             }
         }
-        public static float lastFOVValue
+        public static float LastFOVValue
         {
             set
             {
@@ -33,7 +33,7 @@ namespace Database
 
     public class LevelRelated
     {
-        public static int selectedLevelFromScene
+        public static int SelectedLevelFromScene
         {
             set
             {
@@ -44,7 +44,7 @@ namespace Database
                 return PlayerPrefs.GetInt("sceneLevel", 0);
             }
         }
-        public static int gridLevelSize
+        public static int GridLevelSize
         {
             set
             {
@@ -117,31 +117,16 @@ namespace Database
         /// <returns></returns>
         public static Color ColorEnumToColorUnity(TileColor tileColor, ColorMap colorPallete)
         {
-            Color y = new Color();
-            switch(tileColor)
+            var y = tileColor switch
             {
-                case TileColor.First:
-                    y = colorPallete.colors[1];
-                    break;
-                case TileColor.Second:
-                    y = colorPallete.colors[2];
-                    break;
-                case TileColor.Third:
-                    y = colorPallete.colors[3];
-                    break;
-                case TileColor.Forth:
-                    y = colorPallete.colors[4];
-                    break;
-                case TileColor.Fifth:
-                    y = colorPallete.colors[5];
-                    break;
-                case TileColor.Sixth:
-                    y = colorPallete.colors[6];
-                    break;
-                default:
-                    y = colorPallete.colors[0];
-                    break;
-            }
+                TileColor.First => colorPallete.colors[1],
+                TileColor.Second => colorPallete.colors[2],
+                TileColor.Third => colorPallete.colors[3],
+                TileColor.Forth => colorPallete.colors[4],
+                TileColor.Fifth => colorPallete.colors[5],
+                TileColor.Sixth => colorPallete.colors[6],
+                _ => colorPallete.colors[0],
+            };
             return y;
         }
 
@@ -152,26 +137,14 @@ namespace Database
         /// <returns></returns>
         public static Vector2 DirectionEnumToVectorUnity(InputManager.Direction direction)
         {
-            Vector2 y = new Vector2();
-            switch(direction)
+            var y = direction switch
             {
-                case InputManager.Direction.Down:
-                    y = Vector2.down;
-                    break;
-                case InputManager.Direction.Up:
-                    y = Vector2.up;
-                    break;
-                case InputManager.Direction.Right:
-                    y = Vector2.right;
-                    break;
-                case InputManager.Direction.Left:
-                    y = Vector2.left;
-                    break;
-                default:
-                    y = Vector2.zero;
-                    break;
-            }
-
+                InputManager.Direction.Down => Vector2.down,
+                InputManager.Direction.Up => Vector2.up,
+                InputManager.Direction.Right => Vector2.right,
+                InputManager.Direction.Left => Vector2.left,
+                _ => Vector2.zero,
+            };
             return y;
         }
 
@@ -184,7 +157,7 @@ namespace Database
         /// <returns></returns>
         public static bool InRangeInclusive(float low, float high, float toBeChecked)
         {
-            return (toBeChecked >= low && toBeChecked <= high) ? true : false;
+            return (toBeChecked >= low && toBeChecked <= high);
         }
 
     }

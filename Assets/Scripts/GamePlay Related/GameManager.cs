@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     private float startAnimationDuration;
+    [SerializeField]
     private List<LevelScriptableObject> levelData = new List<LevelScriptableObject>();
 
     [SerializeField] 
@@ -40,14 +41,14 @@ public class GameManager : MonoBehaviour
     {
         startAnimationDuration = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AnimationManager>().startingAnimationDuration;
         
-        currentSelectedLevel = Database.LevelRelated.selectedLevelFromScene;
+        currentSelectedLevel = Database.LevelRelated.SelectedLevelFromScene;
         Debug.Log("Level Index (StartingFrom0): " + currentSelectedLevel);
         untouchedColor = currentLevelProgress = 0;
 
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
         levelColorChecker = new bool[levelData[currentSelectedLevel].tileData.Length];
 
-        Database.LevelRelated.gridLevelSize = levelData[currentSelectedLevel].gridSize;
+        Database.LevelRelated.GridLevelSize = levelData[currentSelectedLevel].gridSize;
         levelColorChecker = new bool[levelData[currentSelectedLevel].gridSize * levelData[currentSelectedLevel].gridSize];
 
         levelStatusUIChildren = levelStatusUI.GetComponentsInChildren<Image>();
@@ -106,8 +107,8 @@ public class GameManager : MonoBehaviour
             touchedPlaneIndex = touchedCubeSideIndex = 0;
         }
 
-        TileColor colorInPlane = levelData[currentSelectedLevel].tileColor[touchedPlaneIndex];
-        TileColor colorOnSide = levelData[currentSelectedLevel].cubeSidesColor[touchedCubeSideIndex];
+        //TileColor colorInPlane = levelData[currentSelectedLevel].tileColor[touchedPlaneIndex];
+        //TileColor colorOnSide = levelData[currentSelectedLevel].cubeSidesColor[touchedCubeSideIndex];
         #endregion
 
 
