@@ -17,6 +17,7 @@ public class MainCamera : MonoBehaviour
     byte red = 0;
     byte green = 0;
     byte blue = 0;
+    [SerializeField]
     byte alpha = 255;
 
     int frameCount = 0; // Variable used to pause color changes in Light for the frame count specified with colorChangeInterval

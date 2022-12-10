@@ -10,10 +10,9 @@ public class CubeSideCollideChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision) 
     {
-        int n;
-        bool isNumeric = int.TryParse(collision.name, out n);
+        bool isNumeric = int.TryParse(collision.name, out int n);
 
-        if(isNumeric)
-            collidedTileIndex = int.Parse(collision.name);
+        if (isNumeric)
+            collidedTileIndex = n;
     }
 }

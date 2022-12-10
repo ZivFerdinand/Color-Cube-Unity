@@ -13,12 +13,13 @@ public class AudioPlayer : MonoBehaviour
 
     [SerializeField] private AudioSource source;
     public SFX[] soundEffects;
+    [SerializeField]
     private Dictionary<string, AudioClip> sfxDict = new Dictionary<string, AudioClip>();
 
     private void Start() 
     {
         sfxDict.Clear();
-        for(int i=0;i<soundEffects.Length;i++)
+        for (int i = 0; i < soundEffects.Length; i++)
         {
             sfxDict.Add(soundEffects[i].name, soundEffects[i].clip);
         }

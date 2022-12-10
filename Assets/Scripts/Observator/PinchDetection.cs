@@ -13,7 +13,7 @@ public class PinchDetection : MonoBehaviour
     void Awake()
     {
         fovValue = Camera.main;
-        fovValue.fieldOfView = Database.Cameras.lastFOVValue;
+        fovValue.fieldOfView = Database.Cameras.LastFOVValue;
         
         controls = new TouchControls();
     }
@@ -45,7 +45,7 @@ public class PinchDetection : MonoBehaviour
 
     private IEnumerator ZoomDetection()
     {
-        float previousDistance = 0f, distance = 0f;
+        float previousDistance = 0f, distance;
 
         while(true)
         {
@@ -62,7 +62,7 @@ public class PinchDetection : MonoBehaviour
             }
 
             //Keep Current FOV Value
-            Database.Cameras.lastFOVValue = fovValue.fieldOfView;
+            Database.Cameras.LastFOVValue = fovValue.fieldOfView;
 
             previousDistance = distance;
             yield return null;

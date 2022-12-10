@@ -19,13 +19,13 @@ public class CameraRotator : MonoBehaviour
         cameraButton.enabled = true;
 
         //Get Last Target Rotation
-        targetRotation = (Database.Cameras.isInverted) ? 180 : 0;
+        targetRotation = (Database.Cameras.IsInverted) ? 180 : 0;
 
         //Set Rotation to Last Saved Angle
         transform.eulerAngles = new Vector3(0, targetRotation, 0);
     }
     
-    public void onCameraButtonClick()
+    public void OnCameraButtonClick()
     {
         cameraButton.enabled = false;
 
@@ -38,7 +38,7 @@ public class CameraRotator : MonoBehaviour
             cameraButton.enabled = true; 
 
             //Switch Camera Angle Status
-            Database.Cameras.isInverted = !Database.Cameras.isInverted;
+            Database.Cameras.IsInverted = !Database.Cameras.IsInverted;
         });
     }
 }

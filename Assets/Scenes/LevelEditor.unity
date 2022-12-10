@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d24c72a35155b946b3b316c63ce5244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: []
   colorPallete: {fileID: 11400000, guid: 49effa2f15543ee49b4432de71e5575a, type: 2}
   currentSelectedLevel: 2
   cubeTile: {fileID: 1239176767}
@@ -1245,7 +1246,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1489081396}
         m_TargetAssemblyTypeName: CameraRotator, Assembly-CSharp
-        m_MethodName: onCameraButtonClick
+        m_MethodName: OnCameraButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

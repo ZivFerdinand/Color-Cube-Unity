@@ -23,11 +23,11 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
 
 #region Audio
-    private AudioPlayer audioPlayer;
-    private void OnEnable()
-    {
-        audioPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioPlayer>();
-    }
+    //private AudioPlayer audioPlayer;
+    //private void OnEnable()
+    //{
+    //    audioPlayer = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioPlayer>();
+    //}
 #endregion
 
 
@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             if (difference.magnitude > swipeThreshold)
             {
                 float dir = 1;
-                if(Database.Cameras.isInverted)
+                if(Database.Cameras.IsInverted)
                     dir = -1;
                 
                 if(dir * (X2 - X1)>=0)

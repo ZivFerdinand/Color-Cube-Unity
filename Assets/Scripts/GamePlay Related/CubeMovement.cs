@@ -56,8 +56,8 @@ public class CubeMovement : MonoBehaviour
     private IEnumerator RollToDirection(InputManager.Direction swipeDirection)
     {
 
-        if (Database.Functions.InRangeInclusive(0f, Database.LevelRelated.gridLevelSize - 1, VectorDebugger.x - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).x) &&
-        Database.Functions.InRangeInclusive(0f, Database.LevelRelated.gridLevelSize - 1, VectorDebugger.y - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).y))
+        if (Database.Functions.InRangeInclusive(0f, Database.LevelRelated.GridLevelSize - 1, VectorDebugger.x - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).x) &&
+        Database.Functions.InRangeInclusive(0f, Database.LevelRelated.GridLevelSize - 1, VectorDebugger.y - Database.Functions.DirectionEnumToVectorUnity(swipeDirection).y))
         {
             if (!isRolling)
             {
@@ -112,36 +112,41 @@ public class CubeMovement : MonoBehaviour
 
     private Vector3 GetAxis(InputManager.Direction direction)
     {
-        switch (direction)
+        #region Alternative Code
+        //switch (direction)
+        //{
+        //    case InputManager.Direction.Left:
+        //        return Vector3.forward;
+        //    case InputManager.Direction.Up:
+        //        return Vector3.right;
+        //    case InputManager.Direction.Right:
+        //        return Vector3.back;
+        //    case InputManager.Direction.Down:
+        //        return Vector3.left;
+        //    default:
+        //        return Vector3.zero;
+        //}
+        #endregion
+        return direction switch
         {
-            case InputManager.Direction.Left:
-                return Vector3.forward;
-            case InputManager.Direction.Up:
-                return Vector3.right;
-            case InputManager.Direction.Right:
-                return Vector3.back;
-            case InputManager.Direction.Down:
-                return Vector3.left;
-            default:
-                return Vector3.zero;
-        }
+            InputManager.Direction.Left => Vector3.forward,
+            InputManager.Direction.Up => Vector3.right,
+            InputManager.Direction.Right => Vector3.back,
+            InputManager.Direction.Down => Vector3.left,
+            _ => Vector3.zero,
+        };
     }
 
     private Vector3 GetDirectionVector(InputManager.Direction direction)
     {
-        switch (direction)
+        return direction switch
         {
-            case InputManager.Direction.Left:
-                return Vector3.left;
-            case InputManager.Direction.Up:
-                return Vector3.forward;
-            case InputManager.Direction.Right:
-                return Vector3.right;
-            case InputManager.Direction.Down:
-                return Vector3.back;
-            default:
-                return Vector3.zero;
-        }
+            InputManager.Direction.Left => Vector3.left,
+            InputManager.Direction.Up => Vector3.forward,
+            InputManager.Direction.Right => Vector3.right,
+            InputManager.Direction.Down => Vector3.back,
+            _ => Vector3.zero,
+        };
     }
 
     private Vector2 GetPivotOffset(InputManager.Direction direction)
@@ -149,8 +154,7 @@ public class CubeMovement : MonoBehaviour
         Vector2 pivotOffset = Vector2.zero;
         Vector2 center = transform.GetComponent<BoxCollider>().size / 2f;
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.up, out hit, 100f, contactWallLayer))
+        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, 100f, contactWallLayer))
         {
             switch (hit.collider.name)
             {

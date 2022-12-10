@@ -50,6 +50,7 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     private Vector2 _lerpTo;
 
     // target position of every page
+    [SerializeField]
     private List<Vector2> _pagePositions = new List<Vector2>();
 
     // in draggging, when dragging started and where it started

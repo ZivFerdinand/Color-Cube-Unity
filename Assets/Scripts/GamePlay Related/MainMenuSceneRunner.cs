@@ -32,22 +32,17 @@ public class MainMenuSceneRunner : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        
-    }
-
-    public void onPlayButtonClickedAnimation()
+    public void OnPlayButtonClickedAnimation()
     {
         //HOMEUI FADE
         homeUI.SetActive(true);
         homeUICanvas.alpha = 1f;
-        homeUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
+        homeUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(() =>
         {
             homeUI.SetActive(false);
         });
 
-        cubeButton.LeanMoveY(cubeButtonTargetPos.position.y, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(async() =>
+        cubeButton.LeanMoveY(cubeButtonTargetPos.position.y, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(() =>
         {
             //CARDLEVEL FADE
             levelCardSelectUI.SetActive(true);
@@ -57,7 +52,7 @@ public class MainMenuSceneRunner : MonoBehaviour
 
         cubeButton.LeanScale(cubeButton.transform.localScale / 2, cubeFloatingDuration).setEaseInOutBounce();
     }
-    public async void onReverseButtonClickedAnimation()
+    public void OnReverseButtonClickedAnimation()
     {
         #region ToMainScreen
         if (levelCardSelectUICanvas.alpha == 1)
@@ -65,13 +60,13 @@ public class MainMenuSceneRunner : MonoBehaviour
             //CARDLEVEL FADE
             levelCardSelectUI.SetActive(true);
             levelCardSelectUICanvas.alpha = 1;
-            levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async () =>
+            levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(() =>
             {
                 levelCardSelectUI.SetActive(false);
             });
 
 
-            cubeButton.LeanMoveY(0, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(async () =>
+            cubeButton.LeanMoveY(0, cubeFloatingDuration).setEaseInOutElastic().setOnComplete(() =>
             {
                 //HOMEUI FADE
                 homeUI.SetActive(true);
@@ -92,7 +87,7 @@ public class MainMenuSceneRunner : MonoBehaviour
         #endregion
     }
 
-    public async void onMapSelectedAnimation()
+    public void OnMapSelectedAnimation()
     {
         particleCube.SetActive(false);
         
@@ -100,7 +95,7 @@ public class MainMenuSceneRunner : MonoBehaviour
         levelCardSelectUI.SetActive(true);
         
         levelCardSelectUICanvas.alpha = 1;
-        levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(async() =>
+        levelCardSelectUICanvas.LeanAlpha(0, fadingDuration).setOnComplete(() =>
         {
             levelSelectUI.SetActive(true);
             levelCardSelectUI.SetActive(false);

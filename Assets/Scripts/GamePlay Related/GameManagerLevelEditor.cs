@@ -6,6 +6,7 @@ using TMPro;
 public class GameManagerLevelEditor : MonoBehaviour
 {
     private float startAnimationDuration;
+    [SerializeField]
     private List<LevelScriptableObject> levelData = new List<LevelScriptableObject>();
 
     [SerializeField] 
@@ -40,7 +41,7 @@ public class GameManagerLevelEditor : MonoBehaviour
 
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
 
-        Database.LevelRelated.gridLevelSize = levelData[currentSelectedLevel].gridSize;
+        Database.LevelRelated.GridLevelSize = levelData[currentSelectedLevel].gridSize;
         
         cubeSideChildren = cubeSides.GetComponentsInChildren<MeshRenderer>();
         cubeTileChildren = cubeTile.GetComponentsInChildren<MeshRenderer>();
@@ -78,7 +79,7 @@ public class GameManagerLevelEditor : MonoBehaviour
     {
         Database.Functions.LoadGameData<LevelScriptableObject>(ref levelTotal, levelData, "Level SO(s)");
 
-        Database.LevelRelated.gridLevelSize = levelData[currentSelectedLevel].gridSize;
+        Database.LevelRelated.GridLevelSize = levelData[currentSelectedLevel].gridSize;
 
         //Set Cube Sides Color
         for (int i = 0; i < cubeSideChildren.Length;i++)
@@ -125,7 +126,7 @@ public class GameManagerLevelEditor : MonoBehaviour
         parentGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         parentGameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         parentGameObject.transform.LeanRotate(new Vector3(0, 0, 0), startAnimationDuration).setEaseInOutElastic();
-        parentGameObject.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(async () =>
+        parentGameObject.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(() =>
         {
             cubePlayer.GetComponent<CubeMovement>().FallingAnimation();
             foreach (GameObject anim in animatedGameObject_0)
