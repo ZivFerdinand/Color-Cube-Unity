@@ -104,6 +104,8 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         // if(carName != null)
         // carName.text = CarsInfo.carNames[currentPage].ToString().ToUpper();
 
+        levelName.text = transform.GetChild(0).GetChild(currentPage).name;
+
         // if moving to target position
         if (_lerp) {
             // prevent overshooting with values greater than 1

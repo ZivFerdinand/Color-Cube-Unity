@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
         parentGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         parentGameObject.transform.rotation = Quaternion.Euler(0, -180, 0);
         parentGameObject.transform.LeanRotate(new Vector3(0, 0, 0), startAnimationDuration).setEaseInOutElastic();
-        parentGameObject.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(async () =>
+        parentGameObject.transform.LeanScale(Vector3.one, startAnimationDuration).setEaseOutBounce().setOnComplete(() =>
         {
             cubePlayer.GetComponent<CubeMovement>().FallingAnimation();
             foreach (GameObject anim in animatedGameObject_0)
