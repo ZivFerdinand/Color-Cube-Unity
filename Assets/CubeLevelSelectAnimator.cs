@@ -5,22 +5,30 @@ using UnityEngine;
 public class CubeLevelSelectAnimator : MonoBehaviour
 {
     float animationQueue;
-    Vector3 initialPosition;
+    public Vector3 initialPosition;
     void OnEnable()
     {
-        float x = Random.Range(0, 360f);
+        int x = Random.Range(0, 360);
         int n;
         bool isNumeric = int.TryParse(this.gameObject.name, out n);
 
-        if(isNumeric)
+        if (isNumeric)
             animationQueue = int.Parse(this.gameObject.name);
+        else
+            return;
 
         animationQueue /= 5;
 
-        initialPosition = transform.localPosition;
+        if(initialPosition == Vector3.zero)
+        {
+            initialPosition = transform.localPosition;
+        }
+
         transform.localPosition = new Vector3(0, -Screen.height);
-        transform.rotation = Quaternion.Euler(0, 0, x);
-        transform.GetComponentInChildren<Transform>().transform.rotation = Quaternion.Euler(0,0,360f-x);
+
+        transform.rotation = Quaternion.Euler(0, 0, (float)x);
+        this.gameObject.transform.GetChild(0).transform.rotation = Quaternion.Euler(0,0,0);
+
         StartCoroutine(DelayAnimation());
     }
 
@@ -28,6 +36,7 @@ public class CubeLevelSelectAnimator : MonoBehaviour
     {
         transform.localPosition = initialPosition;
     }
+
 
     private IEnumerator DelayAnimation()
     {

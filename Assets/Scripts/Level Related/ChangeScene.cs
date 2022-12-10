@@ -20,6 +20,6 @@ public class ChangeScene : MonoBehaviour
         bool isNumeric = int.TryParse(button.name, out n);
 
         if(isNumeric)
-            Database.LevelRelated.selectedLevelFromScene = int.Parse(button.name);
+            Database.LevelRelated.selectedLevelFromScene = int.Parse(button.name) - 1;
     }
 }
